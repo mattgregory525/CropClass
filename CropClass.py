@@ -44,6 +44,52 @@ class Crop:
         self._days_growing += 1
         self._update_status()
         
+def diplay_menu():
+    print("1. Grow manually")
+    print("2. Grow automatically")
+    print("3. Report status")
+    print("0. Exit program")
+    print("")
+    print("Please select a option")
+
+
+def get_menu_choice():
+    valid = False
+    while not valid:
+        try:
+            choice = int(input("Option selected: "))
+            if 0 <= choice <= 4 :
+                valid = True
+            else:
+                print("Please enter a valid option")
+        except ValueError:
+            print("Please enter a valid option")
+    return choice
+
+def manage_crop(crop):
+    print("This is a crop managment program")
+    print()
+    noexit = True
+    while noexit:
+        diplay_menu()
+        option = get_menu_choice()
+        print()
+        if option == 1:
+            manual_grow(crop)
+            print()
+        elif option == 2:
+            auto_grow(crop,30)
+            print()
+        elif option == 3:
+            print(crop.report())
+            print()
+        elif option == 0 :
+            noexit = False
+            print()
+    print("Thank you for using this program")
+        
+        
+            
 def auto_grow(crop,days):
     for day in range(days):
         light = random.randint(1,10)
@@ -76,13 +122,13 @@ def manual_grow(crop):
             print("Value entered not valid - please enter a value between(1-10)")
 
     crop.grow(light,water)
+
+
+
 def main():
     #Instaniate class
     new_crop = Crop(1,4,3)
-    print (new_crop.needs())
-    print (new_crop.report())
-    manual_grow(new_crop)
-    print(new_crop.report())
+    manage_crop(new_crop)
     
 
 
