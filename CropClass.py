@@ -17,7 +17,7 @@ class Crop:
 
     def needs(self):
         #Returns a dictionary containing light/water need
-        return{"Light need": self._light_need,"Water need": self._water_need,}
+        return{"Light need": self._light_need,"Water need": self._water_need}
 
 
     def report(self):
