@@ -6,7 +6,7 @@ class Wheat(Crop):
 
     def __init__(self):
         #call superclass constructor
-        super().__init__(1,5,5)
+        super().__init__(2,5,5)
         self._type = "Wheat"
 
     #override grow method
@@ -28,11 +28,7 @@ class Wheat(Crop):
 
 def main():
     wheat_crop = Wheat()
-    print(wheat_crop.report())
-    manual_grow(wheat_crop)
-    print(wheat_crop.report())
-    manual_grow(wheat_crop)
-    print(wheat_crop.report())
+   
 
 if __name__ == "__main__":
     main()

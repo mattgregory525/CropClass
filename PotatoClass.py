@@ -25,11 +25,7 @@ class Potato(Crop):
 
 def main():
     potato_crop = Potato()
-    print(potato_crop.report())
-    manual_grow(potato_crop)
-    print(potato_crop.report())
-    manual_grow(potato_crop)
-    print(potato_crop.report())
+    
 
 if __name__ == "__main__":
     main()
