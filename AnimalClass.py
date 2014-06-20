@@ -6,7 +6,6 @@ class Animal:
         self.weight = 0
         self.name = None
         self._food_need = food_need
-
         self._growth = 0
         self._days_growing = 0
         self._growth_rate = growth_rate
@@ -16,7 +15,7 @@ class Animal:
         self._type = "Generic"
 
     def needs(self):
-        return {"light need": self._light_need, "Water need": self._water_need}
+        return {"light need": self._light_need, "Water need": self._water_need, "Food need": self._food_need}
 
     def report(self):
         return {"Type": self._type, "Status": self._status, "Growth": self._growth, "Days growing": self._days_growing}
@@ -34,7 +33,14 @@ class Animal:
         elif self._growth == 0 :
             self._status = "Unborn"
 
-    def grow(self,light,water):
-        if light >= self._light_need and water >= self._water_need:
+    def grow(self,light,water,food):
+        if light >= self._light_need and water >= self._water_need and food >= self._food_need:
             self._growth += growth_rate
-        self.
+        self._days_growing += 1
+        self._update_status()
+
+
+def main():
+    new_animal = Animal
+if __name__ == "__main__":
+    main()
