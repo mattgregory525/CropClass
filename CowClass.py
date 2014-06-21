@@ -1,13 +1,12 @@
 from AnimalClass import *
 
-class Sheep(Animal):
+class Cow(Animal):
 
     """A virtual sheep"""
 
     def __init__(self):
         super().__init__(2,3,4,5)
-        self._type = "Sheep"
-
+        self._type = "Cow"
 
     def name(self):
         done = False
@@ -22,22 +21,21 @@ class Sheep(Animal):
     def grow(self,light,water,food):
         if light >= self._light_need and water >= self._water_need and food >= self:
             if self._status == "Infant":
+                self._growth += self._growth_rate * 2.5
+            elif self._status == "Young" :
                 self._growth += self._growth_rate * 2
-            elif self._status == "Young" :
-                self._growth += self._growth_rate * 1.5
             elif self._status == "Mature" :
-                self._growth += self._growth_rate
+                self._growth += self._growth_rate * 1.5
             elif self._status == "Young" :
-                self._growth += self._growth_rate /2
+                self._growth += self._growth_rate 
 
         self._days_growing += 1
-        self._weight += 3
         self._update_status()
             
 
                 
 def main():
-    sheep_animal = Sheep()
+    cow_animal = Cow()
 
 if __name__ == "__main__":
     main()
