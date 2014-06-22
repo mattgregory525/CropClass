@@ -40,6 +40,7 @@ class Sheep(Animal):
                 
 def main():
     sheep_animal = Sheep()
+    Sheep.name(sheep_animal)
 
 if __name__ == "__main__":
     main()

@@ -38,6 +38,7 @@ class Cow(Animal):
                 
 def main():
     cow_animal = Cow()
+    Cow.name(cow_animal)
 
 if __name__ == "__main__":
     main()
