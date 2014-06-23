@@ -24,13 +24,26 @@ def select_option():
             print("Please enter a valid option")
     return choice
 
+def name(new_animal):
+    done = False
+    while not done:
+        name = input("Name your animal: ")
+        if len(name) == 0:
+            print("You must enter a name")
+        else:
+            new_animal._name = name
+            done = True
+
 def create_animal():
     display_menu()
     choice = select_option()
     if choice == 1:
         new_animal = Sheep()
+        new_animal.name = name(new_animal)
     elif choice == 2:
         new_animal = Cow()
+        new_animal.name = name(new_animal)
+
     return new_animal
             
 def main():

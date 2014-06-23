@@ -15,10 +15,10 @@ class Animal:
         self._type = "Generic"
 
     def needs(self):
-        return {"light need": self._light_need, "Water need": self._water_need, "Food need": self._food_need}
+        return {"Light need": self._light_need, "Water need": self._water_need, "Food need": self._food_need}
 
     def report(self):
-        return {"Type": self._type, "Status": self._status, "Growth": self._growth, "Days growing": self._days_growing, "Weight": self._weight}
+        return {"Name": self._name, "Type": self._type, "Status": self._status, "Growth": self._growth, "Days growing": self._days_growing, "Weight": self._weight}
 
 
     def _update_status(self):
@@ -41,7 +41,6 @@ class Animal:
         self._update_status()
 
 
-
 def display_menu():
     print()
     print("1. Grow animal")
@@ -49,6 +48,7 @@ def display_menu():
     print("0. Exit program")
     print()
     print("Please enter your option")
+
 
 def get_menu_choice():
     valid = False
@@ -123,7 +123,9 @@ def grow_animal(new_animal,light,water,food):
     
 
 def main():
-    new_animal = Animal(1,5,6,7)
+    new_animal = Animal(7,1,7,7)
     manage_animal(new_animal)
+
+
 if __name__ == "__main__":
     main()
