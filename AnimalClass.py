@@ -1,7 +1,7 @@
 class Animal:
     """A virtual animal"""
 
-    def __init__(self,food_need,growth_rate,light_need,water_need):
+    def __init__(self,growth_rate,light_need,food_need,water_need):
 
         self._weight = 50
         self._name = None
@@ -123,7 +123,7 @@ def grow_animal(new_animal,light,water,food):
     
 
 def main():
-    new_animal = Animal(7,1,7,7)
+    new_animal = Animal(1,7,7,7)
     manage_animal(new_animal)
 
 
