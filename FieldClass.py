@@ -82,7 +82,7 @@ def harvest_crop_from_field(field):
 def remove_animal_from_field(field):
     display_animals(field._animals)
     selected_animal = select_animal(len(field._animals))
-    return field.remove_animal_from_field(selected_animal)
+    return field.remove_animal(selected_animal)
 
 
 def main():
