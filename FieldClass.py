@@ -4,7 +4,7 @@ from CowClass import *
 from SheepClass import *
 
 class Field:
-    """A field"""
+    """A virtual field"""
 
     def __init__(self,max_animals,max_crops):
         self._crops = []
@@ -32,8 +32,33 @@ class Field:
     def remove_animal(self, position):
         return self._animals.pop(position)
 
+    def report_contents(self):
+        crop_report = []
+        animal_report = []
+        for crop in self._crops:
+            crop_report.append(crop.report())
+        for animal in self._animals:
+            animal_report.append(animal.report())
+        return {"crops": crop_report, "animals": animal_report}
 
-
+    def report_needs(self):
+        food = 0
+        light = 0
+        water = 0
+        for crop in self._crops:
+            needs = crop.needs()
+            if needs["Light need"] > light:
+                light = needs["Light need"]
+            if needs["Water need"] > water:
+                water = needs["Water need"]
+        for animal in self._animals:
+            needs = animal.needs()
+            food += needs["Food need"]
+            if needs["Water need"] > water:
+                water = needs["water need"]
+        return {"Food":food, "Light":light, "Water":water}
+            
+    
 
 def display_crops(crop_list):
     print()
@@ -91,10 +116,14 @@ def main():
     new_field.plant_crop(Potato())
     new_field.add_animal(Sheep())
     new_field.add_animal(Cow())
-    harvest_crop_from_field(new_field)
-    print(new_field._crops)
-    remove_animal_from_field(new_field)
-    print(new_field._animals)
+    report = new_field.report_contents()
+    print(report["animals"])
+    print()
+    print(report["crops"])
+    report = new_field.report_needs()
+    print(report)
+
+   
 
 
     
