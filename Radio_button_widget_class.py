@@ -33,5 +33,5 @@ class RadioButtonWidget(QWidget):
 
         self.setLayout(self.main_layout)
 
-    def selecteId_button(self):
+    def selected_button(self):
         return self.radio_button_group.checkedId()
