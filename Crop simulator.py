@@ -2,6 +2,9 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+from PotatoClass import *
+from WheatClass import *
+
 from Radio_button_widget_class import *
 
 class CropWindow(QMainWindow):
@@ -33,9 +36,9 @@ class CropWindow(QMainWindow):
 
     def instantiate_crop(self):
         crop_type = self.crop_radio_buttons.selected_button()
-        if crop_type ==1:
+        if crop_type == 1:
             self.simulated_crop = Wheat()
-        elif crop_type ==2:
+        elif crop_type == 2:
             self.simulated_crop = Potato()
         print(self.simulated_crop)
 
