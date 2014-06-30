@@ -33,6 +33,37 @@ class CropWindow(QMainWindow):
 
         self.instantiate_button.clicked.connect(self.instantiate_crop)
 
+    def create_view_crop_layout(self,crop_type):
+
+        self.growth_label = QLabel("Growth")
+        self.days_label = QLabel("Days")
+        self.status_label = QLabel("Crop status")
+
+        self.growth_line_edit = QLineEdit()
+        self.days_line_edit = QLineEdit()
+        self.status_line_edit = QLineEdit()
+
+        self.manual_grow_button = QPushButton("Grow manually")
+        self.automatic_grow_button = QPushButton("Grow automatically")
+
+        self.grow_grid = QGridlayout()
+        self.status_grid = QGridlayout()
+
+        self.status_grid.addWidget(self.growth_label,0,0)
+        self.status_grid.addWidget(self.days_label,1,0)
+        self.status_grid.addWidget(self.status_label,2,0)
+
+        self.status_grid.addWidget(self.growth_line_edit,0,1)
+        self.status_grid.addWidget(self.days_line_edit,1,1)
+        self.status_grid.addWidget(self.status_line_edit,2,1)
+
+        self.grow_grid.addLayout(self.status_grid,0,1)
+        self.grow_grid.addWidget(self.manual_grow_button,1,0)
+        self.grow_grid.addWidget(self.automatic_grow_button,1,1)
+
+
+        
+
 
     def instantiate_crop(self):
         crop_type = self.crop_radio_buttons.selected_button()
