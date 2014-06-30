@@ -8,6 +8,7 @@ from PotatoClass import *
 from WheatClass import *
 
 from Radio_button_widget_class import *
+from manual_grow_dialog_class import *
 
 class CropWindow(QMainWindow):
     """This class creates the main window"""
@@ -72,6 +73,7 @@ class CropWindow(QMainWindow):
         self.view_crop_widget.setLayout(self.grow_grid)
 
         self.automatic_grow_button.clicked.connect(self.automatically_grow_crop)
+        self.manual_grow_button.clicked.connect(self.manually_grow_crop)
 
 
     def instantiate_crop(self):
@@ -91,6 +93,13 @@ class CropWindow(QMainWindow):
             light = random.randint(1,10)
             water = random.randint(1,10)
             self.simulated_crop.grow(light,water)
+        self.update_crop_view_status()
+
+    def manually_grow_crop(self):
+        manual_values_dialog = ManualGrowDialog()
+        manual_values_dialog.exec_()
+        light,water = manual_values_dialog.values()
+        self.simulated_crop.grow(light,water)
         self.update_crop_view_status()
 
 
