@@ -27,9 +27,9 @@ class Crop:
 
     #Underscores make a class private, meaning they must be accsessed through another method
     def _update_status(self):
-        if self._growth > 15:
+        if self._growth >= 15:
             self.status = "Old"
-        elif self._growth >10:
+        elif self._growth > 10:
             self._status = "Mature"
         elif self._growth > 5:
             self._status = "Young"
