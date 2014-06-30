@@ -15,6 +15,13 @@ class CropWindow(QMainWindow):
         self.setWindowTitle("Crop simulator")
         self.create_select_crop_layout()
 
+        self.stacked_layout = QStackedLayout()
+        self.stacked_layout.addWidget(self.selected_crop_widget)
+
+        self.central_widget = QWidget()
+        self.central_widget.setLayout(self.stacked_layout)
+        self.setCentralWidget(self.central_widget)
+
 
     def create_select_crop_layout(self):
 
@@ -28,8 +35,6 @@ class CropWindow(QMainWindow):
 
         self.selected_crop_widget = QWidget()
         self.selected_crop_widget.setLayout(self.initial_layout)
-
-        self.setCentralWidget(self.selected_crop_widget)
 
         self.instantiate_button.clicked.connect(self.instantiate_crop)
 
@@ -46,8 +51,8 @@ class CropWindow(QMainWindow):
         self.manual_grow_button = QPushButton("Grow manually")
         self.automatic_grow_button = QPushButton("Grow automatically")
 
-        self.grow_grid = QGridlayout()
-        self.status_grid = QGridlayout()
+        self.grow_grid = QGridLayout()
+        self.status_grid = QGridLayout()
 
         self.status_grid.addWidget(self.growth_label,0,0)
         self.status_grid.addWidget(self.days_label,1,0)
@@ -61,8 +66,8 @@ class CropWindow(QMainWindow):
         self.grow_grid.addWidget(self.manual_grow_button,1,0)
         self.grow_grid.addWidget(self.automatic_grow_button,1,1)
 
-
-        
+        self.view_crop_widget = QWidget()
+        self.view_crop_widget.setLayout(self.grow_grid)
 
 
     def instantiate_crop(self):
@@ -71,7 +76,10 @@ class CropWindow(QMainWindow):
             self.simulated_crop = Wheat()
         elif crop_type == 2:
             self.simulated_crop = Potato()
-        print(self.simulated_crop)
+
+        self.create_view_crop_layout(crop_type)
+        self.stacked_layout.addWidget(self.view_crop_widget)
+        self.stacked_layout.setCurrentIndex(1)
 
 def main():
     crop_simulation = QApplication(sys.argv)
