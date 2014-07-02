@@ -23,6 +23,7 @@ class Field:
 
     def add_animal(self,animal):
         if len(self._animals) < self._max_animals:
+            animal._name = input("Please name this animal: ")
             self._animals.append(animal)
             return True
         else:
@@ -84,7 +85,7 @@ class Field:
                     if additional_food > 0:
                         additional_food -= 1
                         feed += 1
-                    animal.grow(water,feed)
+                    animal.grow(feed,water)
                     
                     
                 
@@ -182,6 +183,7 @@ def manual_grow(field):
         except ValueError:
                 print("Please enter a valid input")
     field.grow(light,food,water)
+
 
     
 def display_crop_menu():

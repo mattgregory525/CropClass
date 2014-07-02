@@ -1,44 +1,45 @@
 class Animal:
     """A virtual animal"""
 
-    def __init__(self,growth_rate,light_need,food_need,water_need):
+    def __init__(self,growth_rate,food_need,water_need):
 
-        self._weight = 50
+        self._weight = 0
         self._name = None
         self._food_need = food_need
-        self._growth = 0
         self._days_growing = 0
         self._growth_rate = growth_rate
-        self._light_need = light_need
         self._water_need = water_need
         self._status = "Unborn"
         self._type = "Generic"
 
     def needs(self):
-        return {"Light need": self._light_need, "Water need": self._water_need, "Food need": self._food_need}
+        return {"Water need": self._water_need, "Food need": self._food_need}
 
     def report(self):
-        return {"Name": self._name, "Type": self._type, "Status": self._status, "Growth": self._growth, "Days growing": self._days_growing, "Weight": self._weight}
+        return {"Name": self._name, "Type": self._type, "Status": self._status, "Growth": self._weight, "Days growing": self._days_growing, "Weight": self._weight}
 
 
     def _update_status(self):
-        if self._growth > 15:
+        if self._weight > 15:
             self.status = "Old"
-        elif self._growth >10:
+        elif self._weight >10:
             self._status = "Mature"
-        elif self._growth > 5:
+        elif self._weight > 5:
             self._status = "Young"
-        elif self._growth > 0:
+        elif self._weight > 0:
             self._status = "Infant"
-        elif self._growth == 0 :
+        elif self._weight == 0 :
             self._status = "Unborn"
 
-    def grow(self,light,water,food):
-        if light >= self._light_need and water >= self._water_need and food >= self._food_need:
-            self._growth += self._growth_rate
+    def grow(self,food,water):
+        if water >= self._water_need and food >= self._food_need:
+            self._weight += self._growth_rate
             self._weight += 3
         self._days_growing += 1
         self._update_status()
+
+    def name(self):
+        self._name = input("Please name your animal: ")
 
 
 def display_menu():
@@ -72,7 +73,7 @@ def manage_animal(new_animal):
         option = get_menu_choice()
         print()
         if option == 1:
-            grow_animal(new_animal,6,6,6)
+            grow_animal(new_animal,6,6)
         elif option == 2:
             print(new_animal.report())
            
@@ -81,19 +82,7 @@ def manage_animal(new_animal):
             print()
     print("Thank you for using this program")
 
-def grow_animal(new_animal,light,water,food):
-    valid = False
-    while not valid:
-        try:
-            light = int(input("Please enter a light value (1-10): "))
-            if 1<= light <= 10:
-                valid = True
-            else:
-                print("Value entered not valid - please enter a value between(1-10)")
-                        
-        except ValueError:
-            print("Value entered not valid - please enter a value between(1-10)")
-
+def grow_animal(new_animal,water,food):
     valid = False
     while not valid:
         try:
@@ -117,13 +106,13 @@ def grow_animal(new_animal,light,water,food):
         except ValueError:
             print("Value entered not valid - please enter a value between(1-10)")
 
-    new_animal.grow(light,water,food)
+    new_animal.grow(water,food)
 
     
     
 
 def main():
-    new_animal = Animal(1,7,7,7)
+    new_animal = Animal(1,6,6)
     manage_animal(new_animal)
 
 

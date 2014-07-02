@@ -5,21 +5,21 @@ class Cow(Animal):
     """A virtual sheep"""
 
     def __init__(self):
-        super().__init__(2,3,4,5)
+        super().__init__(3,5,6)
         self._type = "Cow"
 
-    def grow(self,light,water,food):
-        if light >= self._light_need and water >= self._water_need and food >= self_food_need:
+    def grow(self,water,food):
+        if water >= self._water_need and food >= self._food_need:
             if self._status == "Unborn":
-                self._growth += self._growth_rate * 2.5
+                self._weight += self._growth_rate * 2.5
             elif self._status == "Infant":
-                self._growth += self._growth_rate * 2
+                self._weight += self._growth_rate * 2
             elif self._status == "Young" :
-                self._growth += self._growth_rate * 1.5
+                self._weight += self._growth_rate * 1.5
             elif self._status == "Mature" :
-                self._growth += self._growth_rate 
+                self._weight += self._growth_rate 
             elif self._status == "Old" :
-                self._growth += self._growth_rate /2
+                self._weight += self._growth_rate /2
 
         self._days_growing += 1
         self._update_status()
@@ -28,6 +28,7 @@ class Cow(Animal):
                 
 def main():
     cow_animal = Cow()
+    manage_animal(cow_animal)
     
     
 
