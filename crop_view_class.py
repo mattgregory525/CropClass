@@ -1,4 +1,4 @@
-from PyQt.QtGui import *
+from PyQt4.QtGui import *
 
 import resources
 
@@ -8,7 +8,7 @@ class CropView(QGraphicsView):
     def __init__(self):
        super().__init__()
 
-    def resources(self,crop_type)
+    def resources(self,crop_type):
         seed = QPixmap(":/{0}_seed.png".format(crop_type))
         seedling = QPixmap(":/{0}_seedling.png".format(crop_type))
         young = QPixmap(":/{0}_young.png".format(crop_type))
@@ -30,10 +30,10 @@ class CropView(QGraphicsView):
 
 class WheatView(CropView):
     def __init__(self):
-        super().__init()
+        super().__init__()
         self.resources("Wheat")
 
 class PotatoView(CropView):
     def __init__(self):
-        super().__init()
+        super().__init__()
         self.resources("Potato")

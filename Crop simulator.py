@@ -9,6 +9,7 @@ from WheatClass import *
 
 from Radio_button_widget_class import *
 from manual_grow_dialog_class import *
+from crop_view_class import *
 
 class CropWindow(QMainWindow):
     """This class creates the main window"""
@@ -51,6 +52,17 @@ class CropWindow(QMainWindow):
         self.days_line_edit = QLineEdit()
         self.status_line_edit = QLineEdit()
 
+        if crop_type == 1:
+            self.crop_view = WheatView()
+        elif crop_type == 2:
+            self.crop_view = PotatoView()
+
+        self.crop_view.setHorizontalScrollBarPolicy(1)
+        self.crop_view.setVerticalScrollBarPolicy(1)
+        self.crop_view.setFixedHeight(182)
+        self.crop_view.setFixedWidth(242)
+
+
         self.manual_grow_button = QPushButton("Grow manually")
         self.automatic_grow_button = QPushButton("Grow automatically")
 
@@ -65,6 +77,7 @@ class CropWindow(QMainWindow):
         self.status_grid.addWidget(self.days_line_edit,1,1)
         self.status_grid.addWidget(self.status_line_edit,2,1)
 
+        self.grow_grid.addWidget(self.crop_view,0,0)
         self.grow_grid.addLayout(self.status_grid,0,1)
         self.grow_grid.addWidget(self.manual_grow_button,1,0)
         self.grow_grid.addWidget(self.automatic_grow_button,1,1)
@@ -108,6 +121,17 @@ class CropWindow(QMainWindow):
         self.growth_line_edit.setText(str(crop_status_report["Growth"]))
         self.days_line_edit.setText(str(crop_status_report["Days growing"]))
         self.status_line_edit.setText(str(crop_status_report["Status"]))
+
+        if crop_status_report["Status"] == "Seed":
+            self.crop_view.switch_scene(0)
+        elif crop_status_report["Status"] == "Seedling":
+            self.crop_view.switch_scene(1)
+        elif crop_status_report["Status"] == "Young":
+            self.crop_view.switch_scene(2)
+        elif crop_status_report["Status"] == "Mature":
+            self.crop_view.switch_scene(3)
+        elif crop_status_report["Status"] == "Old":
+            self.crop_view.switch_scene(4)
 
 def main():
     crop_simulation = QApplication(sys.argv)
